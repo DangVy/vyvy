@@ -19,7 +19,7 @@ class CreateCuscNhanvienTable extends Migration
             $table->string('nv_taiKhoan', 50)->comment('Số tài khoản nhân viên');
             $table->string('nv_matKhau', 32)->comment('Mật khẩu');
             $table->string('nv_hoTen', 100)->comment('Họ tên nhân viên');
-            $table->boolean('nv_gioiTinh')->comment('Giới tính');
+            $table->unsignedTinyInteger('nv_gioiTinh')->default('1')->comment('Giới tính');
             $table->string('nv_email', 100)->comment('Địa chỉ email');
             $table->dateTime('nv_ngaySinh')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Ngày sinh');
             $table->string('nv_diaChi', 250)->comment('Địa chỉ');
@@ -28,7 +28,7 @@ class CreateCuscNhanvienTable extends Migration
             $table->timestamp('nv_capNhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật nhân viên gần nhất');
             $table->tinyInteger('nv_trangThai')->default('2')->comment('Trạng thái nhân viên: 1- khóa, 2- khả dụng');
             $table->unsignedTinyInteger('q_ma')->comment('Mã quyền:  1- Giám đốc, 2- Quản trị, 3-Quản lí kho, 4-Kế toán, 5-Nhân viên bán hàng, 6-Nhân viên giao hàng');
-            $table->unique(['nv_taiKhoan', 'nv_email','nv_dienthoai']);
+            $table->unique(['nv_taiKhoan', 'nv_email','nv_dienThoai']);
             $table->foreign('q_ma')
                 ->references('q_ma')->on('cusc_quyen')
                 ->onDelete('CASCADE')
