@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/thongtin', function(){
+    return 'Nội dung thông tin';
+});
+Route::get('/chude', 'ChuDeController@index')->name('chude.index');
+Route::get('/chude/create', 'ChuDeController@create')->name('chude.create');
