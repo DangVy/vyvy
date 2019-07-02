@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
+use Session;
 class ChuDeController extends Controller
 {
     /**
@@ -14,11 +13,11 @@ class ChuDeController extends Controller
      */
     public function index()
     {
-        $danhsachchude = ChuDe::all();
-        return view('chude.index')
+        // Lấy danh sach Chủ đề trong Database
+        $danhsachchude = ChuDe::all(); //SELECT * FROM cusc_chude
+        return view('backend.chude.index')
             ->with('danhsachchude', $danhsachchude);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +25,8 @@ class ChuDeController extends Controller
      */
     public function create()
     {
-        return view('chude.create');
+        return view('backend.chude.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -37,9 +35,16 @@ class ChuDeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // var_dump();die;
+        // print_r();die;
+        // dd($request); //Dump and die
+        $cd = new ChuDe();
+        $cd->cd_ten = $request->input('cd_ten');
+        $cd->cd_trangThai = 2;
+        $cd->save();
+        Session::flash('alert-warning', 'Thêm mới thành công ^^~!!!');
+        return redirect()->route('backend.chude.index');
     }
-
     /**
      * Display the specified resource.
      *
@@ -50,7 +55,6 @@ class ChuDeController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -59,9 +63,10 @@ class ChuDeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chude = ChuDe::find($id);
+        return view('backend.chude.edit')
+            ->with('chude', $chude);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -71,9 +76,11 @@ class ChuDeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $chude = ChuDe::find($id);
+        $chude->cd_ten = $request->input('cd_ten');
+        $chude->save();
+        return redirect()->route('backend.chude.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -82,6 +89,8 @@ class ChuDeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $chude = ChuDe::find($id);
+        $chude->delete();
+        return redirect()->route('backend.chude.index');
     }
 }
