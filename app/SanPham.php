@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class SanPham extends Model
 {
     const     CREATED_AT    = 'sp_taoMoi';
@@ -15,8 +15,12 @@ class SanPham extends Model
     protected $dates        = ['sp_taoMoi', 'sp_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
 
-    public function sanPhams()
+    public function loaisanpham()
     {
-        return $this->hasMany('App\SanPham', 'l_ma', 'l_ma');
+        return $this->belongsTo('App\Loai', 'l_ma', 'l_ma');
+    }
+    public function hinhanhlienquan()
+    {
+        return $this->hasMany('App\HinhAnh', 'sp_ma', 'sp_ma');
     }
 }
