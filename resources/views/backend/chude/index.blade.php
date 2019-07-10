@@ -14,6 +14,8 @@ Danh sách các chủ đề có trong Hệ thống. Bạn có thể CRUD!
 
 @section('content')
 <a href="{{ route('backend.chude.create') }}" class="btn btn-primary">Thêm mới Chủ đề</a>
+<a href="{{ route('backend.chude.print') }}" class="btn btn-success">In danh sách Chủ đề</a>
+<a href="{{ route('backend.chude.pdf') }}" class="btn btn-danger">Xuất PDF danh sách Chủ đề</a>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>

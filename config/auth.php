@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -12,12 +10,10 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -34,20 +30,16 @@ return [
     | Supported: "session", "token"
     |
     */
-
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,19 +56,22 @@ return [
     | Supported: "database", "eloquent"
     |
     */
-
     'providers' => [
+        // Không sử dụng model `User` (mặc định của Laravel)
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\User::class,
+        // ],
+        // Thay thế việc Xác thực tài khoản bằng model `Nhanvien`
         'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
+            'driver' => 'custom',
+            'model' => App\Nhanvien::class,
         ],
-
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -91,7 +86,6 @@ return [
     | they have less time to be guessed. You may change this as needed.
     |
     */
-
     'passwords' => [
         'users' => [
             'provider' => 'users',
@@ -99,5 +93,4 @@ return [
             'expire' => 60,
         ],
     ],
-
 ];

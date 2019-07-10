@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
 use Session;
+use Storage;
+use Barryvdh\DomPDF\Facade as PDF;
 class ChuDeController extends Controller
 {
     /**
@@ -92,5 +94,27 @@ class ChuDeController extends Controller
         $chude = ChuDe::find($id);
         $chude->delete();
         return redirect()->route('backend.chude.index');
+    }
+    public function print()
+    {
+        $danhsachchude = ChuDe::all();
+        $data = [
+            'danhsachchude' => $danhsachchude
+        ];
+        return view('backend.chude.print')
+            ->with('danhsachchude', $danhsachchude);
+    }
+    public function pdf(){
+        $danhsachchude = ChuDe::all();
+        $data = [
+            'danhsachchude' => $danhsachchude
+        ];
+        // khi người dùng bấm vào thì hiển thị view xem trước trên web
+        // return view('backend.chude.print')
+        //     ->with('danhsachchude', $danhsachchude);
+
+        //khi người dùng bấm vào thì file pdf sẽ được tải về luôn
+        $pdf = PDF::loadView('backend.chude.pdf', $data);
+        return $pdf->download('DanhMucChuDe.pdf');
     }
 }
