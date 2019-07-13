@@ -88,4 +88,8 @@ class Nhanvien extends Model implements
         $this->attributes['nv_matKhau'] = bcrypt($value);
         dd($this->nv_matKhau);
     }
+    public function quyen()
+    {
+        return $this->belongsTo('App\Quyen', 'q_ma', 'q_ma');
+    }
 }

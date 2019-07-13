@@ -58,6 +58,56 @@ Route::put('/admin/mau/update/{id}', 'MauController@update')->name('backend.mau.
 Route::delete('/admin/mau/delete/{id}', 'MauController@destroy')->name('backend.mau.destroy');
 Route::get('/admin/mau/print', 'MauController@print')->name('backend.mau.print');
 Route::get('/admin/mau/pdf', 'MauController@pdf')->name('backend.mau.pdf');
+
+//route loại sản phẩm
+Route::get('/admin/loai', 'LoaiController@index')->name('backend.loai.index');
+Route::get('/admin/loai/create', 'LoaiController@create')->name('backend.loai.create');
+Route::post('/admin/loai/store', 'LoaiController@store')->name('backend.loai.store');
+Route::get('/admin/loai/edit/{id}', 'LoaiController@edit')->name('backend.loai.edit');
+Route::put('/admin/loai/update/{id}', 'LoaiController@update')->name('backend.loai.update');
+Route::delete('/admin/loai/delete/{id}', 'LoaiController@destroy')->name('backend.loai.destroy');
+Route::get('/admin/loai/print', 'LoaiController@print')->name('backend.loai.print');
+Route::get('/admin/loai/pdf', 'LoaiController@pdf')->name('backend.loai.pdf');
+
+//route nhân viên
+Route::get('/admin/nhanvien', 'NhanVienController@index')->name('backend.nhanvien.index');
+Route::get('/admin/nhanvien/create', 'NhanVienController@create')->name('backend.nhanvien.create');
+Route::post('/admin/nhanvien/store', 'NhanVienController@store')->name('backend.nhanvien.store');
+Route::get('/admin/nhanvien/edit/{id}', 'NhanVienController@edit')->name('backend.nhanvien.edit');
+Route::put('/admin/nhanvien/update/{id}', 'NhanVienController@update')->name('backend.nhanvien.update');
+Route::delete('/admin/nhanvien/delete/{id}', 'NhanVienController@destroy')->name('backend.nhanvien.destroy');
+Route::get('/admin/nhanvien/print', 'NhanVienController@print')->name('backend.nhanvien.print');
+Route::get('/admin/nhanvien/pdf', 'NhanVienController@pdf')->name('backend.nhanvien.pdf');
+
+//route xuất xứ
+Route::get('/admin/xuatxu', 'XuatXuController@index')->name('backend.xuatxu.index');
+Route::get('/admin/xuatxu/create', 'XuatXuController@create')->name('backend.xuatxu.create');
+Route::post('/admin/xuatxu/store', 'XuatXuController@store')->name('backend.xuatxu.store');
+Route::get('/admin/xuatxu/edit/{id}', 'XuatXuController@edit')->name('backend.xuatxu.edit');
+Route::put('/admin/xuatxu/update/{id}', 'XuatXuController@update')->name('backend.xuatxu.update');
+Route::delete('/admin/xuatxu/delete/{id}', 'XuatXuController@destroy')->name('backend.xuatxu.destroy');
+Route::get('/admin/xuatxu/print', 'XuatXuController@print')->name('backend.xuatxu.print');
+Route::get('/admin/xuatxu/pdf', 'XuatXuController@pdf')->name('backend.xuatxu.pdf');
+
+//route vận chuyển
+Route::get('/admin/vanchuyen', 'VanChuyenController@index')->name('backend.vanchuyen.index');
+Route::get('/admin/vanchuyen/create', 'VanChuyenController@create')->name('backend.vanchuyen.create');
+Route::post('/admin/vanchuyen/store', 'VanChuyenController@store')->name('backend.vanchuyen.store');
+Route::get('/admin/vanchuyen/edit/{id}', 'VanChuyenController@edit')->name('backend.vanchuyen.edit');
+Route::put('/admin/vanchuyen/update/{id}', 'VanChuyenController@update')->name('backend.vanchuyen.update');
+Route::delete('/admin/vanchuyen/delete/{id}', 'VanChuyenController@destroy')->name('backend.vanchuyen.destroy');
+Route::get('/admin/vanchuyen/print', 'VanChuyenController@print')->name('backend.vanchuyen.print');
+Route::get('/admin/vanchuyen/pdf', 'VanChuyenController@pdf')->name('backend.vanchuyen.pdf');
+
+//route thanh toán
+Route::get('/admin/thanhtoan', 'ThanhToanController@index')->name('backend.thanhtoan.index');
+Route::get('/admin/thanhtoan/create', 'ThanhToanController@create')->name('backend.thanhtoan.create');
+Route::post('/admin/thanhtoan/store', 'ThanhToanController@store')->name('backend.thanhtoan.store');
+Route::get('/admin/thanhtoan/edit/{id}', 'ThanhToanController@edit')->name('backend.thanhtoan.edit');
+Route::put('/admin/thanhtoan/update/{id}', 'ThanhToanController@update')->name('backend.thanhtoan.update');
+Route::delete('/admin/thanhtoan/delete/{id}', 'ThanhToanController@destroy')->name('backend.thanhtoan.destroy');
+Route::get('/admin/thanhtoan/print', 'ThanhToanController@print')->name('backend.thanhtoan.print');
+Route::get('/admin/thanhtoan/pdf', 'ThanhToanController@pdf')->name('backend.thanhtoan.pdf');
 });
 Auth::routes();
 

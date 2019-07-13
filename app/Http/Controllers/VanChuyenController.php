@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Loai;
+use App\Vanchuyen;
 use Session;
 use Storage;
 use Barryvdh\DomPDF\Facade as PDF;
-class LoaiController extends Controller
+
+class VanChuyenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,9 @@ class LoaiController extends Controller
      */
     public function index()
     {
-        $danhsachloai = Loai::all();
-        return view('backend.loai.index')
-            ->with('danhsachloai', $danhsachloai);
+        $danhsachvanchuyen = Vanchuyen::all();
+        return view('backend.vanchuyen.index')
+            ->with('danhsachvanchuyen', $danhsachvanchuyen);
     }
 
     /**
@@ -29,9 +30,9 @@ class LoaiController extends Controller
      */
     public function create()
     {
-        return view('backend.loai.create');
+        return view('backend.vanchuyen.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,13 +41,14 @@ class LoaiController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $l = new Loai();
-        $l->l_ten = $request->input('l_ten');
-        $l->l_trangThai = 2;
-        $l->save();
+        $vc = new Vanchuyen();
+        $vc->vc_ten = $request->input('vc_ten');
+        $vc->vc_chiPhi = $request->input('vc_chiPhi');
+        $vc->vc_dienGiai = $request->input('vc_dienGiai');
+        $vc->vc_trangThai = 2;
+        $vc->save();
         Session::flash('alert-warning', 'Thêm mới thành công :)');
-        return redirect()->route('backend.loai.index');
+        return redirect()->route('backend.vanchuyen.index');
     }
 
     /**
@@ -68,9 +70,9 @@ class LoaiController extends Controller
      */
     public function edit($id)
     {
-        $loai = Loai::find($id);
-        return view('backend.loai.edit')
-            ->with('loai', $loai);
+        $vanchuyen = Vanchuyen::find($id);
+        return view('backend.vanchuyen.edit')
+            ->with('vanchuyen', $vanchuyen);
     }
 
     /**
@@ -82,10 +84,12 @@ class LoaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $loai = Loai::find($id);
-        $loai->l_ten = $request->input('l_ten');
-        $loai->save();
-        return redirect()->route('backend.loai.index');
+        $vanchuyen = Vanchuyen::find($id);
+        $vanchuyen->vc_ten = $request->input('vc_ten');
+        $vanchuyen->vc_chiPhi = $request->input('vc_chiPhi');
+        $vanchuyen->vc_dienGiai = $request->input('vc_dienGiai');
+        $vanchuyen->save();
+        return redirect()->route('backend.vanchuyen.index');
     }
 
     /**
@@ -96,30 +100,30 @@ class LoaiController extends Controller
      */
     public function destroy($id)
     {
-        $loai = Loai::find($id);
-        $loai->delete();
-        return redirect()->route('backend.loai.index');
+        $vanchuyen = Vanchuyen::find($id);
+        $vanchuyen->delete();
+        return redirect()->route('backend.vanchuyen.index');
     }
     public function print()
     {
-        $danhsachloai = Loai::all();
+        $danhsachvanchuyen = Vanchuyen::all();
         $data = [
-            'danhsachloai' => $danhsachloai
+            'danhsachvanchuyen' => $danhsachvanchuyen
         ];
-        return view('backend.loai.print')
-            ->with('danhsachloai', $danhsachloai);
+        return view('backend.vanchuyen.print')
+            ->with('danhsachvanchuyen', $danhsachvanchuyen);
     }
     public function pdf(){
-        $danhsachloai = Loai::all();
+        $danhsachvanchuyen = Vanchuyen::all();
         $data = [
-            'danhsachloai' => $danhsachloai
+            'danhsachvanchuyen' => $danhsachvanchuyen
         ];
         // khi người dùng bấm vào thì hiển thị view xem trước trên web
-        return view('backend.loai.print')
-            ->with('danhsachloai', $danhsachloai);
+        return view('backend.vanchuyen.print')
+            ->with('danhsachvanchuyen', $danhsachvanchuyen);
 
         //khi người dùng bấm vào thì file pdf sẽ được tải về luôn
-        // $pdf = PDF::loadView('backend.loai.pdf', $data);
-        // return $pdf->download('DanhMucLoaiSanPham.pdf');
+        // $pdf = PDF::loadView('backend.vanchuyen.pdf', $data);
+        // return $pdf->download('DanhMucVanchuyen.pdf');
     }
 }

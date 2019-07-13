@@ -1,7 +1,7 @@
 @extends('print.layouts.paper')
 
 @section('title')
-Biểu mẫu Phiếu in danh sách màu
+Biểu mẫu Phiếu in danh sách thanh toán
 @endsection
 
 @section('paper-size') A4 @endsection
@@ -9,7 +9,7 @@ Biểu mẫu Phiếu in danh sách màu
 
 @section('custom-css')
 <style>
-.mau-thumbnail {
+.thanhtoan-thumbnail {
     width: 600px;
 }
 .logo {
@@ -22,7 +22,7 @@ Biểu mẫu Phiếu in danh sách màu
 @section('content')
 <section class="sheet padding-10mm">
     <article>
-        <table border="0" align="center" cellspacing="0" class="mau-thumbnail">
+        <table border="0" align="center" cellspacing="0" class="thanhtoan-thumbnail">
             <tr>
                 <td class="companyInfo" align="center" >
                     Công ty TNHH Sunshine<br />
@@ -35,35 +35,38 @@ Biểu mẫu Phiếu in danh sách màu
         <br />
         <br />
         <?php 
-        $tongSoTrang = ceil(count($danhsachmau)/5);
+        $tongSoTrang = ceil(count($danhsachthanhtoan)/5);
             ?>
-        <table border="1" align="center" cellpadding="5" class="mau-thumbnail">
-            <caption>Danh sách màu</caption>
+        <table border="1" align="center" cellpadding="5" class="thanhtoan-thumbnail">
+            <caption>Danh sách thanh toán</caption>
             <tr>
                 <th colspan="6" align="center">Trang 1 / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Mã màu</th>
-                <th>Tên màu</th>
+            <th>STT</th>
+                <th>Mã thanh toán</th>
+                <th>Tên thanh toán</th>
+                <th>Diễn giải</th>
             </tr>
-            @foreach ($danhsachmau as $mau)
+            @foreach ($danhsachthanhtoan as $thanhtoan)
             <tr>
                 <td align="center" style="width:10%">{{ $loop->index + 1 }}</td>
-                <td align="left" style="width:30%">{{ $mau->m_ma }}</td>
-                <td align="left">{{ $mau->m_ten }}</td>
+                <td align="left" style="width:30%">{{ $thanhtoan->tt_ma }}</td>
+                <td align="left">{{ $thanhtoan->tt_ten }}</td>
+                <td align="left">{{ $thanhtoan->tt_dienGiai }}</td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)
         </table>
         <div class="page-break"></div>
-        <table border="1" align="center" cellpadding="5" class="mau-thumbnail">
+        <table border="1" align="center" cellpadding="5" class="thanhtoan-thumbnail">
             <tr>
                 <th colspan="6" align="center">Trang {{ 1 + floor(($loop->index + 1) / 5) }} / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
-                <th>STT</th>
-                <th>Mã màu</th>
-                <th>Tên màu</th>
+            <th>STT</th>
+                <th>Mã thanh toán</th>
+                <th>Tên thanh toán</th>
+                <th>Diễn giải</th>
             </tr>
             @endif
             @endforeach

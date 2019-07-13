@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Loai;
+use App\Thanhtoan;
 use Session;
 use Storage;
 use Barryvdh\DomPDF\Facade as PDF;
-class LoaiController extends Controller
+
+class ThanhToanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,9 @@ class LoaiController extends Controller
      */
     public function index()
     {
-        $danhsachloai = Loai::all();
-        return view('backend.loai.index')
-            ->with('danhsachloai', $danhsachloai);
+        $danhsachthanhtoan = Thanhtoan::all();
+        return view('backend.thanhtoan.index')
+            ->with('danhsachthanhtoan', $danhsachthanhtoan);
     }
 
     /**
@@ -29,9 +30,9 @@ class LoaiController extends Controller
      */
     public function create()
     {
-        return view('backend.loai.create');
+        return view('backend.thanhtoan.create');
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,13 +41,13 @@ class LoaiController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        $l = new Loai();
-        $l->l_ten = $request->input('l_ten');
-        $l->l_trangThai = 2;
-        $l->save();
+        $tt = new Thanhtoan();
+        $tt->tt_ten = $request->input('tt_ten');
+        $tt->tt_dienGiai = $request->input('tt_dienGiai');
+        $tt->tt_trangThai = 2;
+        $tt->save();
         Session::flash('alert-warning', 'Thêm mới thành công :)');
-        return redirect()->route('backend.loai.index');
+        return redirect()->route('backend.thanhtoan.index');
     }
 
     /**
@@ -68,9 +69,9 @@ class LoaiController extends Controller
      */
     public function edit($id)
     {
-        $loai = Loai::find($id);
-        return view('backend.loai.edit')
-            ->with('loai', $loai);
+        $thanhtoan = Thanhtoan::find($id);
+        return view('backend.thanhtoan.edit')
+            ->with('thanhtoan', $thanhtoan);
     }
 
     /**
@@ -82,10 +83,11 @@ class LoaiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $loai = Loai::find($id);
-        $loai->l_ten = $request->input('l_ten');
-        $loai->save();
-        return redirect()->route('backend.loai.index');
+        $thanhtoan = Thanhtoan::find($id);
+        $thanhtoan->tt_ten = $request->input('tt_ten');
+        $thanhtoan->tt_dienGiai = $request->input('tt_dienGiai');
+        $thanhtoan->save();
+        return redirect()->route('backend.thanhtoan.index');
     }
 
     /**
@@ -96,27 +98,28 @@ class LoaiController extends Controller
      */
     public function destroy($id)
     {
-        $loai = Loai::find($id);
-        $loai->delete();
-        return redirect()->route('backend.loai.index');
+        $thanhtoan = Thanhtoan::find($id);
+        $thanhtoan->delete();
+        return redirect()->route('backend.thanhtoan.index');
     }
+
     public function print()
     {
-        $danhsachloai = Loai::all();
+        $danhsachthanhtoan = Thanhtoan::all();
         $data = [
-            'danhsachloai' => $danhsachloai
+            'danhsachthanhtoan' => $danhsachthanhtoan
         ];
-        return view('backend.loai.print')
-            ->with('danhsachloai', $danhsachloai);
+        return view('backend.thanhtoan.print')
+            ->with('danhsachthanhtoan', $danhsachthanhtoan);
     }
     public function pdf(){
-        $danhsachloai = Loai::all();
+        $danhsachthanhtoan = Thanhtoan::all();
         $data = [
-            'danhsachloai' => $danhsachloai
+            'danhsachthanhtoan' => $danhsachthanhtoan
         ];
         // khi người dùng bấm vào thì hiển thị view xem trước trên web
-        return view('backend.loai.print')
-            ->with('danhsachloai', $danhsachloai);
+        return view('backend.thanhtoan.print')
+            ->with('danhsachthanhtoan', $danhsachthanhtoan);
 
         //khi người dùng bấm vào thì file pdf sẽ được tải về luôn
         // $pdf = PDF::loadView('backend.loai.pdf', $data);

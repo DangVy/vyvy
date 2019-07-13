@@ -116,12 +116,12 @@ class MauController extends Controller
             'danhsachmau' => $danhsachmau
         ];
         // khi người dùng bấm vào thì hiển thị view xem trước trên web
-        // return view('backend.chude.print')
-        //     ->with('danhsachchude', $danhsachchude);
+        return view('backend.mau.print')
+            ->with('danhsachmau', $danhsachmau);
 
         //khi người dùng bấm vào thì file pdf sẽ được tải về luôn
-        $pdf = PDF::loadView('backend.mau.pdf', $data);
-        return $pdf->download('DanhMucMau.pdf');
+        // $pdf = PDF::loadView('backend.mau.pdf', $data);
+        // return $pdf->download('DanhMucMau.pdf');
     }
     
 }
