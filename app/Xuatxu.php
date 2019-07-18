@@ -10,4 +10,8 @@ class Xuatxu extends Model {
     protected $primaryKey   = 'xx_ma';
     protected $dates        = ['xx_taoMoi', 'xx_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+    public function xuatxu()
+    {
+        return $this->belongsTo('App\Xuatxu', 'xx_ma', 'xx_ma');
+    }
 }

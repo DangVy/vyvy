@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Carbon\Carbon;
+use Mail;
+use App\Mail\RegistertMailer;
 class RegisterController extends Controller
 {
     /*
@@ -60,7 +62,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return Nhanvien::create([
+        $nv = Nhanvien::create([
             'nv_taiKhoan' => $data['nv_taiKhoan'],
             'nv_matKhau' => bcrypt($data['nv_matKhau']), //123456
             'nv_hoTen' => $data['nv_hoTen'],
@@ -74,5 +76,9 @@ class RegisterController extends Controller
             'nv_trangThai' => 2, // Mặc định là 2-Khả dụng
             'q_ma' => 2, // Mặc định là 2-Quản trị
         ]);
+        //gửi mail đăng ký thành công
+        Mail::to('vydang898@gmail.com')
+            ->send(new RegisterMailer($nv));
+        return $nv;
     }
 }

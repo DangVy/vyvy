@@ -7,6 +7,7 @@ use App\Loai;
 use Session;
 use Storage;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
 class SanPhamController extends Controller
 {
     /**
@@ -49,6 +50,28 @@ class SanPhamController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'sp_ten' => 'required|min:3|max:50|unique:cusc_sanpham',
+            'sp_giaGoc' => 'required|min:0|unique:cusc_sanpham',
+            'sp_giaBan' => 'required|min:0|unique:cusc_sanpham',
+            'sp_hinh' => 'required:cusc_sanpham',
+            'sp_thongTin' => 'required:cusc_sanpham',
+            'sp_danhGia' => 'required|min:3|max:50:cusc_sanpham',
+            'sp_taoMoi' => 'required:cusc_sanpham',
+            'sp_capNhat' => 'required:cusc_sanpham',
+            'sp_trangThai' => 'required|min:1|max:4:cusc_sanpham',
+            'l_ma' => 'required:cusc_sanpham',
+        ]);
+        // Nếu kiểm tra ràng buộc dữ liệu thất bại -> tức là dữ liệu không hợp lệ
+        // Chuyển hướng về view "Thêm mới" với,
+        // - Thông báo lỗi vi phạm các quy luật.
+        // - Dữ liệu cũ (người dùng đã nhập).
+        if ($validator->fails()) {
+            return redirect(route('backend.sanpham.create'))
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $sp = new SanPham();
         $sp->sp_ten = $request->sp_ten;
         $sp->sp_giaGoc = $request->sp_giaGoc;

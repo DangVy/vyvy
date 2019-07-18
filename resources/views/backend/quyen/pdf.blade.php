@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title><h3>Danh sách thanh toán</h3></title>
+    <title><h3>Danh sách quyền</h3></title>
     <!-- hỗ trợ tiếng việt khi hiển thị -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
@@ -58,25 +58,25 @@
         <br />
         <br />
         <?php 
-        $tongSoTrang = ceil(count($danhsachthanhtoan)/5);
+        $tongSoTrang = ceil(count($danhsachquyen)/5);
          ?>
         <table border="1" align="center" cellpadding="5">
-            <caption>Danh sách thanh toán</caption>
+            <caption>Danh sách quyền</caption>
             <tr>
                 <th colspan="6" align="center">Trang 1 / {{ $tongSoTrang }}</th>
             </tr>
             <tr>
                 <th>STT</th>
-                <th>Mã thanh toán</th>
-                <th>Tên thanh toán</th>
+                <th>Mã quyền</th>
+                <th>Tên quyền</th>
                 <th>Diễn giải</th>
             </tr>
-            @foreach ($danhsachthanhtoan as $thanhtoan)
+            @foreach ($danhsachquyen as $quyen)
             <tr>
                 <td align="center">{{ $loop->index + 1 }}</td>
-                <td align="left">{{ $thanhtoan->tt_ma }}</td>
-                <td align="right">{{ $thanhtoan->tt_ten }}</td>
-                <td align="right">{{ $thanhtoan->tt_dienGiai }}</td>
+                <td align="left">{{ $quyen->q_ma }}</td>
+                <td align="right">{{ $quyen->q_ten }}</td>
+                <td align="right">{{ $quyen->q_dienGiai }}</td>
             </tr>
             @if (($loop->index + 1) % 5 == 0)
         </table>
@@ -87,8 +87,8 @@
             </tr>
             <tr>
                 <th>STT</th>
-                <th>Mã thanh toán</th>
-                <th>Tên thanh toán</th>
+                <th>Mã quyền</th>
+                <th>Tên quyền</th>
                 <th>Diễn giải</th>
             </tr>
             @endif

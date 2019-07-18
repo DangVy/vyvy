@@ -122,7 +122,7 @@ class ThanhToanController extends Controller
             ->with('danhsachthanhtoan', $danhsachthanhtoan);
 
         //khi người dùng bấm vào thì file pdf sẽ được tải về luôn
-        // $pdf = PDF::loadView('backend.loai.pdf', $data);
-        // return $pdf->download('DanhMucLoaiSanPham.pdf');
+        // $pdf = PDF::loadView('backend.thanhtoan.pdf', $data);
+        // return $pdf->download('DanhMucThanhtoan.pdf');
     }
 }

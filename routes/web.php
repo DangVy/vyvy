@@ -108,6 +108,26 @@ Route::put('/admin/thanhtoan/update/{id}', 'ThanhToanController@update')->name('
 Route::delete('/admin/thanhtoan/delete/{id}', 'ThanhToanController@destroy')->name('backend.thanhtoan.destroy');
 Route::get('/admin/thanhtoan/print', 'ThanhToanController@print')->name('backend.thanhtoan.print');
 Route::get('/admin/thanhtoan/pdf', 'ThanhToanController@pdf')->name('backend.thanhtoan.pdf');
+
+//route quyền
+Route::get('/admin/quyen', 'QuyenController@index')->name('backend.quyen.index');
+Route::get('/admin/quyen/create', 'QuyenController@create')->name('backend.quyen.create');
+Route::post('/admin/quyen/store', 'QuyenController@store')->name('backend.quyen.store');
+Route::get('/admin/quyen/edit/{id}', 'QuyenController@edit')->name('backend.quyen.edit');
+Route::put('/admin/quyen/update/{id}', 'QuyenController@update')->name('backend.quyen.update');
+Route::delete('/admin/quyen/delete/{id}', 'QuyenController@destroy')->name('backend.quyen.destroy');
+Route::get('/admin/quyen/print', 'QuyenController@print')->name('backend.quyen.print');
+Route::get('/admin/quyen/pdf', 'QuyenController@pdf')->name('backend.quyen.pdf');
+
+//route nhà cung cấp
+Route::get('/admin/nhacungcap', 'NhaCungCapController@index')->name('backend.nhacungcap.index');
+Route::get('/admin/nhacungcap/create', 'NhaCungCapController@create')->name('backend.nhacungcap.create');
+Route::post('/admin/nhacungcap/store', 'NhaCungCapController@store')->name('backend.nhacungcap.store');
+Route::get('/admin/nhacungcap/edit/{id}', 'NhaCungCapController@edit')->name('backend.nhacungcap.edit');
+Route::put('/admin/nhacungcap/update/{id}', 'NhaCungCapController@update')->name('backend.nhacungcap.update');
+Route::delete('/admin/nhacungcap/delete/{id}', 'NhaCungCapController@destroy')->name('backend.nhacungcap.destroy');
+Route::get('/admin/nhacungcap/print', 'NhaCungCapController@print')->name('backend.nhacungcap.print');
+Route::get('/admin/nhacungcap/pdf', 'NhaCungCapController@pdf')->name('backend.nhacungcap.pdf');
 });
 Auth::routes();
 
@@ -129,3 +149,10 @@ Route::get('/admin/password/reset', 'Auth\ForgotPasswordController@showLinkReque
 Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('/admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::get('/', 'Frontend\FrontendController@index')->name('frontend.home');
+Route::get('/gioi-thieu', 'Frontend\FrontendController@about')->name('frontend.about');
+Route::get('/lien-he', 'Frontend\FrontendController@contact')->name('frontend.contact');
+Route::post('/lien-he/goi-loi-nhan', 'Frontend\FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
+//Route::get('/dang-ky','Auth\RegisterController@register')->name('frontend.register');
+//Route::post('/dang-ky', 'Frontend\FrontendController@sendMailRegisterForm')->name('frontend.register.sendMailRegisterForm');

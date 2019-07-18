@@ -23,6 +23,7 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
             <th>Hình</th>
             <th>Mã sản phẩm</th>
             <th>Giá gốc</th>
+            <th>Giá bán</th>
             <th>Loại sản phẩm</th>
             <th>Sửa</th>
         </tr>
@@ -39,6 +40,7 @@ Danh sách các Sản phẩm có trong Hệ thống. Bạn có thể CRUD!
             </td>
             <td>{{ $sp->sp_ten }}</td>
             <td>{{ $sp->sp_giaGoc }}</td>
+            <td>{{ $sp->sp_giaBan }}</td>
             <td>{{ $sp->loaisanpham->l_ten }}</td>
             <td>
                 <a href="{{ route('backend.sanpham.edit', ['id' => $sp->sp_ma]) }}" class="btn btn-success">Sửa</a>
