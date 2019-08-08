@@ -149,10 +149,27 @@ Route::get('/admin/password/reset', 'Auth\ForgotPasswordController@showLinkReque
 Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('/admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
+Route::post('/admin/active/{nv_ma}', 'BackendController@activate')->name('activate');
 
+// các route dành riêng cho frontend
 Route::get('/', 'Frontend\FrontendController@index')->name('frontend.home');
 Route::get('/gioi-thieu', 'Frontend\FrontendController@about')->name('frontend.about');
 Route::get('/lien-he', 'Frontend\FrontendController@contact')->name('frontend.contact');
 Route::post('/lien-he/goi-loi-nhan', 'Frontend\FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');
-//Route::get('/dang-ky','Auth\RegisterController@register')->name('frontend.register');
-//Route::post('/dang-ky', 'Frontend\FrontendController@sendMailRegisterForm')->name('frontend.register.sendMailRegisterForm');
+Route::get('/san-pham', 'Frontend\FrontendController@product')->name('frontend.product');
+Route::get('/san-pham/{id}', 'Frontend\FrontendController@productDetail')->name('frontend.productDetail');
+Route::get('/gio-hang', 'Frontend\FrontendController@cart')->name('frontend.cart');
+Route::post('/dat-hang', 'Frontend\FrontendController@order')->name('frontend.order');
+Route::get('/dat-hang/hoan-tat', 'Frontend\FrontendController@orderFinish')->name('frontend.orderFinish');
+
+// Tạo route Báo cáo Đơn hàng
+Route::get('/admin/baocao/donhang', 'Backend\BaoCaoController@donhang')->name('backend.baocao.donhang');
+Route::get('/admin/baocao/donhang/data', 'Backend\BaoCaoController@donhangData')->name('backend.baocao.donhang.data');
+
+//route cho phép chuyển đổi ngôn ngữ
+Route::get('setLocale/{locale}', function ($locale) {
+    if (in_array($locale, Config::get('app.locales'))) {
+      Session::put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('app.setLocale');

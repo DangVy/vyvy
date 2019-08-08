@@ -76,5 +76,8 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('custom-script')
 </body>
 </html>

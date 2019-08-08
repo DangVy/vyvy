@@ -1,15 +1,19 @@
 <?php
+
 use Illuminate\Database\Seeder;
 use Illuminate\PhpVnDataGenerator\VnBase;
 use Illuminate\PhpVnDataGenerator\VnFullname;
 use Illuminate\PhpVnDataGenerator\VnPersonalInfo;
-class HinhanhTableSeeder extends Seeder {
+
+class HinhanhTableSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         $list = [];
         $uFN = new VnFullname();
         $uPI = new VnPersonalInfo();

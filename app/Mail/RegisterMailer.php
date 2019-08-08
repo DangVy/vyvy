@@ -1,16 +1,12 @@
 <?php
-
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 class RegisterMailer extends Mailable
 {
     use Queueable, SerializesModels;
-
     /**
      * Tạo biến chứa dữ liệu dùng để render email template
      */
@@ -32,10 +28,10 @@ class RegisterMailer extends Mailable
     public function build()
     {
         $email = $this->data['nv_email'];
-        return $this->from(env('MAIL_FROM_ADDRESS', 'vydang898@gmail.com'), env('MAIL_FROM_NAME', 'Sunshine'))
+        return $this->from(env('MAIL_FROM_ADDRESS', 'hotro.nentangtoituonglai@gmail.com'), env('MAIL_FROM_NAME', 'Sunshine'))
             ->replyTo($email)
-            ->subject("Dingg dongg $email vừa gửi thông tin cho bạn")
-            ->view('emails.contact-email')
+            ->subject("Có thành viên $email vừa đăng ký")
+            ->view('emails.register-email')
             ->with('data', $this->data);
     }
 }
